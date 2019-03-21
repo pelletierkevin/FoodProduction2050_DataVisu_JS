@@ -14,5 +14,7 @@ In order to access it, you can either clone this repository and open "index.html
 
 ## The project
 This project was done for the Data Visualization course at EPFL.
+
 This specific subject was meant in collaboration with the __Stanford University / Natural Natcaps__.
+
 Group of 3 : Kevin Pelletier - Maxence Petitpierre - Eliott Joulot 
