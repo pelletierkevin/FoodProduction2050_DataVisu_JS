@@ -1,0 +1,263 @@
+
+/*
+This CSS governs the appearance of our site.
+You can find the basic concepts of CSS here: https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/How_CSS_works
+*/
+
+:root {
+	--width: 90%;
+	--blue: #0984e3 !important;
+	--red: #e55039 !important;
+	--green: #1dd1a1 !important;
+	--orange: #fa983a !important;
+	--yellow: #ffeaa7 !important;
+	--purple: #a29bfe !important;
+	--pink: #ef5777 !important;
+	--asphalt: #232524 !important;
+	--grey: #ececec !important;
+
+
+  }
+
+.anyClass {
+  height:auto;
+  overflow-y: scroll;
+}
+
+.SSP {
+	/*visibility: hidden; */
+	display:none;
+}
+
+.navbar {
+	margin-bottom: 30px;
+	padding: 0 calc((100% - var(--width))/2) !important;
+	background-color: var(--asphalt);
+	padding-bottom: 12px !important;
+	padding-top: 12px !important;
+}
+
+.content {
+	width: var(--width);
+    margin-right: auto;
+    margin-left: auto;
+	/* background */
+	background: white;
+	/* default text */
+	font-family: sans-serif;
+	font-size: 1.1rem;
+	margin-bottom: 40px;
+	margin-top: 10px;
+}
+
+.container {
+	border-radius: 6px;
+	height: 550px;
+	width: 300px;
+	padding: 10px 0;
+	background-color: white !important;
+	padding-left: 0px;
+    padding-right: 0px;
+}
+
+.container label {
+	font-weight: bold;
+}
+
+.container .form-check label{
+	font-weight: 500;
+}
+
+.card.container{
+	padding: 0px;
+}
+
+
+.sub-card {
+	width: auto;
+}
+
+.info-container {
+	height: auto;
+	text-align: justify;
+	margin-top: 30px;
+	height: auto;
+}
+
+.info-container p{
+    font-size: 0.9em;
+    margin-top: 20px;
+}
+
+
+.textJustify {
+	text-align: justify;
+	text-justify: auto;
+	margin-right: 40px;
+	margin-left: 30px;
+	margin-top: 40px;
+}
+
+/*
+LOADING ANIMATION
+*/
+.divGif {
+	height : 100%;
+	background-color: rgb(0,0,0,0.6);  /*#00000b3*/
+	position : relative;
+	opacity: 50%;
+}
+.loadingImg {
+	height : 100px;
+	width : 100%;
+	top : 38%;
+	position : sticky;
+}
+.loadingText {
+	top : 37%;
+	color : white;
+	text-align:  center;
+	position : relative;
+	font-size:  larger;
+	font-weight:  bold;
+}
+
+/*
+LEGEND
+*/
+.legend {
+	background-color: #f5f8f9a3;
+    height: 80px;
+    width: 274px;
+    position: absolute;
+    right: 0px;
+	bottom: 20px;
+}
+.legend_title {
+	color: #3b3d3e;
+    padding: 10px 10px 0px 10px;
+    font-size: 12px;
+	font-weight: 500;
+}
+#legend_colors{
+	width: auto;
+	height: 20px; 
+	margin: 4px 10px 0px 10px;
+}
+.legend_values{
+	width: 100%; 
+	overflow: hidden;
+}
+#legend_value_min{
+	float: left;
+    margin-left: 10px;
+}
+#legend_value_max{
+	float: right;
+    margin-right: 10px;
+}
+
+/*
+POPUP
+*/
+.popup_title{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+}
+.popup_value{
+	font-size: 1.3em;
+	padding-top: 4px;
+	margin-bottom: 4px;
+}
+
+.form-check{
+	font-size: 0.9rem;
+}
+
+/* SVG Menu */
+
+#svg_menu {
+	width: 100%;
+	height: 130px;
+	background-color: #f8f9fa;
+}
+
+.stop-left1 {
+	stop-color: #F8D147;  /* Indigo */
+}
+.stop-right1 {
+	stop-color: #F5B13F;  /* Teal */
+}
+.stop-left2 {
+	stop-color: #F3AB3D;  /* Indigo */
+}
+.stop-right2 {
+	stop-color: #EF7930;  /* Teal */
+}
+.stop-left3 {
+	stop-color: #EE732F;  /* Indigo */
+}
+.stop-right3 {
+	stop-color: #EC4826;  /* Teal */
+}
+.filled1 {
+	fill: url(#gradient1);
+}
+.filled2 {
+	fill: url(#gradient2);
+}
+.filled3 {
+	fill: url(#gradient3);
+}
+
+.filled1, .filled2, .filled3 {
+	opacity: 0.6;
+	/*fill : blue;*/
+	cursor: pointer;
+}
+
+.svg_circle_click {
+	opacity: 1;
+}
+
+.circle_text {
+	fill: white;
+	text-anchor: middle;
+	alignment-baseline: middle;
+	dominant-baseline: middle;
+	font-size: 13px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.legend_txt {
+	color: black;
+	text-align: center;
+	font-size: 14px;
+}
+
+.story {
+	width: 600px;
+	margin-left: 28%;
+}
+
+.figure_legend {
+	margin-left: 35%;
+	position: inherit;
+}
+
+body.modal-open .page_container{
+    -webkit-filter: blur(6px);
+    -moz-filter: blur(6px);
+    -o-filter: blur(6px);
+    -ms-filter: blur(6px);
+    filter: blur(6px);
+}
+
+footer {
+	color: white;
+	height: auto;
+	margin-top: 80px;
+	padding: 30px calc((100% - var(--width))/2) !important;
+	background-color: var(--asphalt);
+}

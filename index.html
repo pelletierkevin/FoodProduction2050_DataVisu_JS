@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Food production in 2050</title>
+	<meta name="author" content="Eliott Joulot, Maxence Petitpierre, Kevin Pelletier">
+ 
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<!-- Mapbox -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+
+
+	<script type="text/javascript">
+		// Define the default visualisation
+        //window.onload = defaultSSP();
+    </script>
+
+</head>
+
+<body>
+<div class="page_container">
+
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<a class="navbar-brand" href="index.html">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="info.html">Story</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<button class="btn btn-outline-light my-2 my-sm-0" type="button" data-toggle="modal" data-target=".help-modal">Help</button>
+			</form>
+		</div>
+	</nav>
+
+
+	<div class="content">
+		<h2> Food production in 2050 </h2>
+		
+		<p id="title"></p>
+
+		<div class="row">
+			
+			<div class="col-xs-12 col-sm-8 container map-container" style="padding: 0px 20px 0px 0px; background-color: white">
+				
+				<div id='map' style='width: 100%; height: 100%;border-radius: 6px;border: 1px solid #dedddd;'>
+				
+				</div>
+			</div>
+
+			<div class="col col-sm-4 card bg-light container" style="height: auto;">
+				<!-- <h5 class="card-header">Settings</h5> -->
+				<div class="card-body">
+					<form>
+						<div class="form-group" style="margin-bottom: 10px">
+							<label for="FormControlSelect">Select a prediction model</label>
+							<svg id="svg_menu"></svg>
+						</div>
+
+						<div class="form-group" style="margin-bottom: 20px">
+							<label for="FormControlSelect">Select data to be shown</label>
+							<div class="form-check" style="margin-bottom: 10px">
+								<input class="form-check-input" type="radio" name="scenario" id="ssp1" value="calories" checked>
+								<label class="form-check-label" for="ssp1">Production</label>
+							</div>
+							<div class="form-check" style="margin-bottom: 10px">
+								<input class="form-check-input" type="radio" name="scenario" id="ssp2" value="yields">
+								<label class="form-check-label" for="ssp2">Yields</label>
+							</div>
+							<div class="form-check" style="margin-bottom: 10px">
+								<input class="form-check-input" type="radio" name="scenario" id="ssp3" value="population">
+								<label class="form-check-label" for="ssp3">Population</label>
+							</div>
+						</div>
+
+						<div class="form-group" style="margin-bottom: 10px;">
+							<label for="FormControlSelect">Information</label>
+							<p class="info-container"  style="height: 140px;overflow: scroll;font-size: 15px;">
+									Let's take a look at the Indian region, for example, to compare the models.
+									<br>
+									In the first model, we have a  relatively low population. It can also be noted that all the densities presented are rather homogeneous in the region. 
+									<br>
+									As expected, this homogeneity is much less noticeable in the second model, where we see more distinct areas.
+									<br>
+									Finally, it is interesting to look at production, which increases more in the third model than in the two others. Fossil development brings people into cities. Thus this development is more powerfull in term of yields and production but with strong sustainability weakness. The difference are not that consequent in heatmap and so we advise you to go deeper in interested regions.
+							</p>
+						</div>
+
+					</form>
+				</div>
+			</div>
+			
+		</div>
+
+
+		<div class="row">
+
+			<div  class="col card bg-light container info-container" style="height: auto;">
+				
+				<h5 class="card-header">More information on the predictions</h5>
+				<div  class="card-body sub-card ">
+
+
+					<div class="col anyClass" style="padding: 0px;">				
+						<div class="SSP" id="SSP1">
+							<h4>
+								Sustainability—Taking the green road
+							</h4>
+	
+							<div class="row">
+								<p class="col col-sm-7">
+									<strong>The world shifts gradually, but pervasively, toward a more sustainable path</strong>, emphasizing more inclusive development that respects perceived environmental boundaries. 
+									<br>Increasing evidence of and accounting for the social, cultural, and economic costs of environmental degradation and inequality drive this shift. 
+									<br><br><strong>Management of the global commons slowly improves</strong>, facilitated by increasingly effective and persistent cooperation and collaboration of local, national, and international organizations and institutions, the private sector, and civil society. Educational and health investments accelerate the demographic transition, leading to a relatively low population. 
+									<br>Beginning with current high-income countries, the emphasis on economic growth shifts toward a broader emphasis on human well-being, even at the expense of somewhat slower economic growth over the longer term. Driven by an increasing commitment to achieving development goals, <strong>inequality is reduced both across and within countries</strong>. Investment in environmental technology and changes in tax structures lead to improved resource efficiency, reducing overall energy and resource use and improving environmental conditions over the longer term. Increased investment, financial incentives and changing perceptions make renewable energy more attractive. Consumption is oriented toward low material growth and lower resource and energy intensity.
+								</p>
+								
+								<div class="col col-sm-5 anyClass" style="padding: 0px;padding-left: 20px;margin-top: 20px;">
+										<img src="img/sustainable.jpg" alt="Sustainable Landscape" style="height: 300px;"> 
+								</div>
+							</div>
+								
+						</div>
+		
+						<div class="SSP" id="SSP2">
+							<h4>
+								Middle of the road
+							</h4>
+		
+							<p>
+								The world follows a path in which social, economic, and technological trends do not shift markedly from historical patterns. Development and income growth proceeds unevenly, with some countries making relatively good progress while others fall short of expectations. Most economies are politically stable. Globally connected markets function imperfectly. Global and national institutions work toward but make slow progress in achieving sustainable development goals, including improved living conditions and access to education, safe water, and health care. Technological development proceeds apace, but without fundamental breakthroughs.
+							</p>
+						</div>
+		
+						<div class="SSP" id="SSP3">
+							<h4>
+								Regional Rivalry – A Rocky Road
+							</h4>
+								A resurgent nationalism, concerns about competitiveness and security, and regional conflicts push countries to increasingly focus on domestic or, at most, regional issues. Policies shift over time to become increasingly oriented toward national and regional security issues. Countries focus on achieving energy and food security goals within their own regions at the expense of broader-based development. Investments in education and technological development decline. Economic development is slow, consumption is material-intensive, and inequalities persist or worsen over time. Population growth is low in industrialized and high in developing countries. A low international priority for addressing environmental concerns leads to strong environmental degradation in some regions.
+						</div>
+		
+						<div class="SSP" id="SSP4">
+							<h4>
+								Inequality – A Road Divided 
+							</h4>
+
+							<div class="row">
+								<p class="col col-sm-7">
+										Highly unequal investments in human capital, combined with increasing disparities in economic opportunity and political power, lead to <strong>increasing inequalities and stratification both across and within countries</strong>. 
+										<br><br>Over time, <strong>a gap widens between an internationally-connected society</strong> that contributes to knowledge- and capital-intensive sectors of the global economy, <strong>and a fragmented collection of lower-income, poorly educated societies </strong>that work in a labor intensive, low-tech economy. 
+										<br>Social cohesion degrades and conflict and unrest become increasingly common. Technology development is high in the high-tech economy and sectors. The globally connected energy sector diversifies, with investments in both carbon-intensive fuels like coal and unconventional oil, but also low-carbon energy sources. 
+										<br>Environmental policies focus on local issues around middle and high income 	
+								</p>
+								
+								<div class="col col-sm-5 anyClass" style="padding: 0px;padding-left: 20px;margin-top: 20px;">
+										<img src="img/inequality.jpg" alt="Inequality Landscape" style="height: 300px;"> 
+								</div>
+							</div>
+							
+						</div>
+		
+						<div class="SSP" id="SSP5">
+							<h4>
+								Fossil-fueled Development
+							</h4>
+
+							<div class="row">
+								<p class="col col-sm-7">
+									<strong>This world places increasing faith in competitive markets</strong>, innovation and participatory societies to produce rapid technological progress and development of human capital as the path to sustainable development. 
+									<br><br>Global markets are increasingly integrated. There are also strong investments in health, education, and institutions to enhance human and social capital. At the same time, the push for economic and social development is coupled with <strong>the exploitation of abundant fossil fuel resources</strong> and the adoption of resource and energy intensive lifestyles around the world. 
+									<br>All these factors lead to rapid growth of the global economy, while global population peaks and declines in the 21st century. Local environmental problems like air pollution are successfully managed. There is faith in the ability to effectively manage social and ecological systems, including by geo-engineering if necessary.
+								</p>
+								
+								<div class="col col-sm-5 anyClass" style="padding: 0px;padding-left: 20px;margin-top: 20px;">
+										<img src="img/fossil.jpg" alt="Fossil Energy Landscape" style="height: 300px;"> 
+								</div>
+							</div>
+							
+							
+						</div>
+		
+		
+					</div>
+
+					
+
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+
+	<footer>
+		<p>COM-480 Data Visualization, academic project teached by <a href="https://www.kirellbenzi.com/fr/" target="_blank">Kirell Benzi</a></p>
+		<ul>
+			<li><a href="https://www.linkedin.com/in/eliottjoulot/" target="_blank">Eliott Joulot</a></li>
+			<li><a href="https://www.linkedin.com/in/maxence-petitpierre/?locale=en_US" target="_blank">Maxence Petitpierre</a></li>
+			<li><a href="https://www.linkedin.com/in/pelletier-kevin/?locale=en_US" target="_blank">Kevin Pelletier</a></li>
+		</ul>
+		
+		<a href="https://www.epfl.ch" target="_blank"><img src="src/images/EPFL.png" alt="EPFL" height="50" style="margin-right: 20px"></a>
+		<a href="https://naturalcapitalproject.stanford.edu" target="_blank"><img src="src/images/natcap.png" alt="NatCap" height="50"></a>
+	</footer>
+
+
+	<script src="help_popup.js"></script>
+	<script src="main.js"></script>
+	<script src="lib/d3.min.js"></script>
+	<script src="lib/topojson.min.js"></script>
+	
+
+</div>
+</body>
+
+<!-- Help modal -->
+<div class="modal fade help-modal" tabindex="-1" role="dialog" aria-labelledby="helpModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Welcome to our data visualization project!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" w3-include-html="content.html">
+				<p><strong>What are the impacts of the society's behavior on our futur world?</strong></p>
+				<p>
+					This interactive data story lets you dive in several climate change scenario over the year 2050. 
+					<br>From to fossil-fueled to sustainability development, you will be able to see several impact on the food production.
+					<br>If you want to know <a href="info.html">more</a> about it or you prefer to go direclty to the <a href="index.html">visualization</a>
+				</p>
+				<p><strong>How to use:</strong></p>
+				<p>
+					On the right side, you can first select which type of development you want by clicking on circles. </br>
+				    Once selected, you can then select from, three possible parameters, the one to visualize given the model chosen.</br>
+					<img src="img/select_model.gif" alt="Select Model Gif" style="display: block;margin-left: auto;margin-right: auto;">
+				    <br>
+					Thus you are free to explore the world prediction. First the model will show a heatmap of the selected parameter. Then you will be able to zoom and click on dots to obtain values.
+					<br>
+					<img src="img/map_resized.gif" alt="Map Point View Gif" style="display: block;margin-left: auto;margin-right: auto;">
+				</p>
+
+			</div>
+
+			<div class="modal-footer mr-auto">
+				<p><strong>We highly recommend to use Chrome for a smoother experience.</strong></p>
+			</div>
+				
+			<script>
+				$(document).ready(function() {
+					if(1) { //navigator.userAgent.indexOf("Chrome") == -1 
+						
+						var footer = document.createElement("div");
+						footer.className = "modal-footer mr-auto";
+
+						var chromeAdvice = document.createElement("p");
+						chromeAdvice.innerHTML = "We highly recommend to use Chrome for a smoother experience."
+
+						footer.appendChild(chromeAdvice);
+
+						var elem = document.getElementsByClassName('modal-content');
+						//elem.appendChild(footer);
+					}
+
+				});
+
+			</script>
+			
+			
+		</div>
+	</div>
+</div>
+
+
+
+
+</html>
